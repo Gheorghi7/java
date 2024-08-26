@@ -70,7 +70,7 @@ public class Main {
         System.out.println(Arrays.toString(reference));
 
         System.out.println("---------------");
-        String[] names = {"Anne", "Bob", "Jon", "Tom", "Jan", "David"};
+            String[] names = {"Anne", "Bob", "Jon", "Tom", "Jan", "David"};
         String[] randomList = randomlySelectedValue(15, names, () -> new Random().nextInt(0, names.length));
         System.out.println(Arrays.toString(randomList));
     }
