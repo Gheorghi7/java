@@ -2,10 +2,12 @@ package pack_1;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
+import java.util.function.Consumer;
 
 public class PokerGame {
 	private final List<Card> deck = Card.getStandartDeck(); 
@@ -35,9 +37,16 @@ public class PokerGame {
 		deal(); 
 		
 		System.out.println("--------------------------------"); 
-		pokerHands.forEach(System.out::println);
+		Consumer<PokerHand> checkHand = PokerHand::evalHand;
+		pokerHands.forEach(checkHand.andThen(System.out::println));
 		
 		
+		int cardDealt = playerCount * cardsInHand; 
+		int cardRemaining = deck.size() - cardDealt; 
+		remainingCards = new ArrayList<>(cardRemaining);
+		remainingCards = new ArrayList<>(Collections.nCopies(cardRemaining, null));
+		remainingCards.replaceAll(c -> deck.get(cardDealt + remainingCards.indexOf(c)));
+		Card.printDeck(remainingCards, "Remaining cards", 2);
 		
 	}
 	
