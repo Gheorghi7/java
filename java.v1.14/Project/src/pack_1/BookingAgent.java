@@ -8,7 +8,8 @@ public class BookingAgent {
 		rodgersNYC.printSeatMap();
 		bookSeat(rodgersNYC, 'A', 3);
 		bookSeat(rodgersNYC, 'A', 7);
-		
+		bookSeat(rodgersNYC, 4, 'B', 3, 10);
+		bookSeat(rodgersNYC, 6, 'B','C', 3, 10);
 		
 	}
 	
@@ -21,6 +22,20 @@ public class BookingAgent {
 			System.out.println("Sorry! Unable to reserve " + rows + seatNo );
 		}
 	
-
+		
+	}
+	private static void bookSeat(Theatre theatre, int tickets, char minRow, int minSeat, int maxSeat) {
+		bookSeat(theatre, tickets, minRow, minRow, minSeat, maxSeat);
+	}
+	
+	private static void bookSeat(Theatre theatre, int tickets, char minRow, char maxRow, int minSeat, int maxSeat) {
+		var seat = theatre.reserveSeat(tickets, minRow, maxRow, minSeat, maxSeat);
+		if(seat != null) {
+			System.out.println("Congratulations! Your reversed seat are " + seat);
+			theatre.printSeatMap();
+		}else {
+			System.out.println("Sorry!! No matching contiguous seats in rows "+ minRow+ " - "+ maxRow);
+		}
+		
 	}
 }
