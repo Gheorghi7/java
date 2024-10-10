@@ -81,6 +81,9 @@ public class Contact {
 			emails.remove(oldEmail); 
 			emails.add(newEmail);
 		}
+		
+		
+	
 	}
 	
 	
